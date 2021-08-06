@@ -1,0 +1,773 @@
+1.	⇒ Add below code into function.php file
+
+add_shortcode("atlasturf_calculator","atlasturf_calculator");
+
+function atlasturf_calculator($attrs){
+	?>
+		<style type="text/css">
+			.atlasturf.heading h3 {
+			    text-align: center;
+			    color: black;
+			}
+			.atlasturf_section {
+			    padding: 0px 0px;
+			}
+			
+			.elementor-container.elementor-column-gap-extended {
+			    display: contents !important;
+			}
+			.turf_selected h3.variety-title {
+				    color: #8fc839 !important;
+			}
+			.turf_selected .border-box:after {
+			    background-color: #8ec939;
+			    border: 1px solid #8bca33;
+			}
+			.turf_selected span.border-box {
+			    border-top: 1px solid #8bca33;
+			}
+			.turf_selected h4.variety-size-price {
+			    color: #8ccd35;
+			}
+			.turf_selected .turf-variety-box img {
+			    filter: drop-shadow(2px 4px 6px black);
+			}
+			li.turfshap_selected h3 {
+			    color: #90c23d !important;
+			}
+			li.turfshap_selected img {
+			    filter: drop-shadow(0px 1px 5px gray) !important;
+			}
+			.c-filed.circle_field,.c-filed.trigona_field,.c-filed.semicircle_field,.c-filed.defaultrect_field{
+			    display: none;
+			}
+			.final_amt label span {
+			    /* background-image: radial-gradient(circle, #f2f9e6, #d7eab9, #bbda8b, #80bb27, #779e3b); */
+			    color: black !important;
+			    font-weight: bold;
+			    padding: 5px 10px;
+			}
+			.final_amt label {
+    background-image: radial-gradient(circle, #f2f9e6, #d7eab9, #bbda8b, #80bb27, #779e3b);
+    color: black !important;
+    font-weight: bold !important;
+    padding: 5px 10px;
+}
+.final_amt {
+    padding-top: 25px;
+}
+.c-filed.semicircle_field {
+    width: 100%;
+}
+li.turfshap_selected {
+    pointer-events: none;
+}
+span.turf_success {
+    background-color: #e8f5cf;
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid #67963a;
+    width: 100% !important;
+}
+span.turf_fail {
+background-color: #ff222269;
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid #dc1818;
+    width: 100% !important;
+    color: black;
+    }
+    h3 {
+    font-size: 16px;
+}
+.turf-box.elementor-column.elementor-col-33 {
+    width: 33.3%;
+    float: left;
+        margin-top: 20px;
+    padding: 11px;
+    /* min-height: 410px !important; */
+}
+.shape-list li {
+    width: 18% !important;
+    float: left;
+    list-style: none;
+    padding: 10px;
+}
+.atlasturf.heading h3 {
+	font-family: Roboto,sans-serif;
+	padding-top:20px;
+    width: 100%;
+    font-size: 18px;
+    display: grid;
+}
+.calculate-shape {
+    padding-top: 40px;
+    width: 100%;
+    display: flex;
+}
+h4.variety-size-price {
+	font-family: Roboto,sans-serif;
+    font-size: 16px;
+    margin: 0px;
+}
+.c-form-btn {
+    text-align: center;
+}
+.shape-measure {
+    border: 1px dotted #d1e4ba;
+    margin: 30px 0px;
+    padding: 30px;
+}
+.atlasturf.heading h3 {
+	    text-transform: uppercase;
+    font-size: 25px !important;
+}
+.c-form-btn button,button#btn_turf_addtocart{
+    padding: 10px 22px;
+    background-color: #86bb46;
+    margin-top: 1em;
+    padding: 10px 22px;
+    font-size: 12px;
+    line-height: 22px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 3px;
+}
+.shape-list h3 {
+    font-size: 12px;
+    text-align: center;
+}
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+h3.variety-title {
+	font-family: Roboto,sans-serif;
+    min-height: 50px;
+    margin-bottom: 0px;
+    line-height: 20px;
+}
+.calculate-shape {
+    margin-bottom: 20px;
+}
+.c-filed.circle_field {
+    width: 100%;
+}
+button.c-another-btn {
+    margin-left: 10px;
+}
+.calculate-shape div {
+    float: left;
+    width: 50% !important;
+}
+.calculate-shape div.c-total {
+    width: 100% !important;
+        margin-top: 15px !important;
+}
+.calculate-shape {
+    display: flow-root;
+}
+.c-total {
+    text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+ .turf-box.elementor-column.elementor-col-33 {
+    float: left;
+    margin-top: 20px;
+    padding: 11px;
+    width: 50%;
+    / min-height: 410px !important; /
+}
+
+.shape-list li {
+    width: 50% !important;
+    float: left;
+    list-style: none;
+    padding: 10px;
+   
+    text-align: center;
+}
+
+.shape-list ul {
+    display: contents;
+    text-align: center;
+    width: 100%;
+}
+
+.shape-list h3 {
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+.calculate-shape div {
+    float: left;
+    width: 100% !important;
+}
+
+li.turfshap_selected {
+    min-height: auto;
+}
+}
+		</style>
+		<!--<link rel="stylesheet" type="text/css" href="<?php //echo get_template_directory_uri(); ?>/css/turfstyle.css"> -->
+		<div class="atlasturf_wrapper">
+			<div class="atlasturf_section">
+				<?php
+				$pro_277 = wc_get_product(277);
+				 $pro_277_price = $pro_277->get_regular_price();
+				  $pro_277_price = round( $pro_277_price,1);
+
+				 $pro_276 = wc_get_product(276);
+				 $pro_276_price = $pro_276->get_regular_price();
+					$pro_276_price = round( $pro_276_price,1);
+
+				 $pro_275 = wc_get_product(275);
+				 $pro_275_price = $pro_275->get_regular_price();
+				 $pro_275_price = round( $pro_275_price,1);
+					
+				 $pro_273 = wc_get_product(273);
+				 $pro_273_price = $pro_273->get_regular_price();
+				 $pro_273_price = round( $pro_273_price,1);
+					
+				 $pro_274 = wc_get_product(274);
+				 $pro_274_price = $pro_274->get_regular_price();
+				 $pro_274_price = round( $pro_274_price,1);
+					
+				 $pro_272 = wc_get_product(272);
+				 $pro_272_price = $pro_272->get_regular_price();
+				 $pro_272_price = round( $pro_272_price,1);
+					
+
+
+				if((isset($_REQUEST['msg'])) && ($_REQUEST['msg'] != '')){
+					if($_REQUEST['msg'] == 'true'){
+						?>
+						<span class="turf_success">Your product added scuessfully.</span>
+						<?php
+					}
+					if($_REQUEST['msg'] == 'false'){
+						?>
+						<span class="turf_fail">Something is wrong.Please try again.</span>
+						<?php
+					}
+				}
+				?>
+				<div class="atlasturf heading">
+					<h3>Choose your turf variety</h3>
+				</div>
+				<div class="atlasturf calcbody">	
+					
+					<form method="post" id="frm_tuf_calc">
+					<!-- start body calc -->
+					<section class="elementor-section elementor-inner-section elementor-element elementor-element-5a06c515 elementor-section-boxed elementor-section-height-default elementor-section-height-default " data-id="5a06c515" data-element_type="section">
+								<div class="elementor-container elementor-column-gap-extended">
+									<div class="elementor-row">
+										<div class="turf-box elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-5289bcf6 turf_product turf_selected" turf_pro_price="<?php echo $pro_277_price; ?>" turf_pro_id="277" data-id="5289bcf6" data-element_type="column">
+											<div class="turf-variety-box">
+												<h3 class="variety-title">Sir Walter Buffalo Turf</h3>
+												<span class="border-box"></span>
+												<h4 class="variety-size-price">$ <?php echo $pro_277_price; ?> / m<sup>2</sup></h4>
+												<img src="http://atlasturf.com.au/wp-content/uploads/2016/05/sir-walter-buffalo-turf-supplies-sydney-450px.jpg">
+											</div>
+										</div>
+						
+										<div class="turf-box elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-5289bcf6 turf_product" turf_pro_price="<?php echo $pro_276_price; ?>" turf_pro_id="276" data-id="5289bcf6" data-element_type="column">
+											<div class="turf-variety-box">
+												<h3 class="variety-title">Sapphire Buffalo Turf</h3>
+												<span class="border-box"></span>
+												<h4 class="variety-size-price">$ <?php echo $pro_276_price; ?> / m<sup>2</sup></h4>
+												<img src="http://atlasturf.com.au/wp-content/uploads/2016/05/sapphire-soft-leaf-buffalo-turf-sydney.jpg">
+											</div>
+										</div>
+
+										<div class="turf-box elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-5289bcf6 turf_product" turf_pro_price="<?php echo $pro_275_price; ?>" turf_pro_id="275" data-id="5289bcf6" data-element_type="column">
+											<div class="turf-variety-box">
+												<h3 class="variety-title">Palmetto Buffalo Turf</h3>
+												<span class="border-box"></span>
+												<h4 class="variety-size-price">$ <?php echo $pro_275_price; ?> / m<sup>2</sup></h4>
+												<img src="http://atlasturf.com.au/wp-content/uploads/2016/05/palmetto-soft-leaf-buffalo-turf-sydney.jpg">
+											</div>
+										</div>
+
+									</div>
+
+									<div class="elementor-row">
+										<div class="turf-box elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-5289bcf6 turf_product" turf_pro_price="<?php echo $pro_273_price; ?>" turf_pro_id="273" data-id="5289bcf6" data-element_type="column">
+											<div class="turf-variety-box">
+												<h3 class="variety-title">Kikuyu Turf</h3>
+												<span class="border-box"></span>
+												<h4 class="variety-size-price">$ <?php echo $pro_273_price; ?> / m<sup>2</sup></h4>
+												<img src="http://atlasturf.com.au/wp-content/uploads/2016/05/eureka-kikuyu-turf-sydney.jpg">
+											</div>
+										</div>
+							
+										<div class="turf-box elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-5289bcf6 turf_product" turf_pro_price="<?php echo $pro_274_price; ?>" turf_pro_id="274" data-id="5289bcf6" data-element_type="column">
+											<div class="turf-variety-box">
+												<h3 class="variety-title">Matilda Soft Leaf Buffalo Turf</h3>
+												<span class="border-box"></span>
+												<h4 class="variety-size-price">$ <?php echo $pro_274_price; ?> / m<sup>2</sup></h4>
+												<img src="http://atlasturf.com.au/wp-content/uploads/2016/05/matilda-turf-sydney.jpg">
+											</div>
+										</div>
+
+										<div class="turf-box elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-5289bcf6 turf_product" turf_pro_price="<?php echo $pro_272_price; ?>" turf_pro_id="272" data-id="5289bcf6" data-element_type="column">
+											<div class="turf-variety-box">
+												<h3 class="variety-title">Empire Zoysia Turf</h3>
+												<span class="border-box"></span>
+												<h4 class="variety-size-price">$ <?php echo $pro_272_price; ?> / m<sup>2</sup></h4>
+												<img src="http://atlasturf.com.au/wp-content/uploads/2016/05/empire-zoysia-turf-sydney-450px.jpg">
+											</div>
+										</div>
+
+
+									</div>
+
+									<div class="shape_data">
+									<div class="shape-measure">
+										<div class="atlasturf heading">
+											<h3>Select your type of shape to measure</h3>
+										</div>
+
+										<div class="shape-list">
+											<ul>
+												<li class="turfshap_selected"  shapfield="default_field">
+													<div class="shap-img-box">
+														<img src="http://atlasturf.com.au/wp-content/uploads/2020/12/Square.png">
+													</div>
+													<h3>Square</h3>
+												</li>
+												<li  shapfield="defaultrect_field">
+													<div class="shap-img-box">
+													<img src="http://atlasturf.com.au/wp-content/uploads/2020/12/Rectangle.png">
+												</div>
+													<h3>Rectangle</h3>
+												</li>
+												<li  shapfield="trigona_field">
+													<div class="shap-img-box">
+													<img src="http://atlasturf.com.au/wp-content/uploads/2020/12/Triangle.png">
+												</div>
+													<h3>Triangle</h3>
+												</li>
+												<li  shapfield="circle_field">
+													<div class="shap-img-box">
+													<img src="http://atlasturf.com.au/wp-content/uploads/2020/12/Circle.png">
+												</div>
+													<h3>Circle</h3>
+												</li>
+												<li  shapfield="semicircle_field">
+													<div class="shap-img-box">
+													<img src="http://atlasturf.com.au/wp-content/uploads/2020/12/Semi-Circle.png">
+												</div>
+													<h3>Semi-Circle</h3>
+												</li>
+											</ul>
+										</div>
+
+										<div class="calculate-shape">
+											
+												<div class="c-filed default_field">
+													<label>Width (m) :</label>
+													<input type="number" name="Width" step="0.01" required="required">
+												</div>
+
+												<div class="c-filed default_field">
+													<label>Height (m) :</label>
+													<input type="number" name="Height" step="0.01" required="required">
+												</div>
+
+												<div class="c-filed defaultrect_field">
+													<label>Width (m) :</label>
+													<input type="number" name="rectangleWidth" step="0.01" required="required">
+												</div>
+
+												<div class="c-filed defaultrect_field">
+													<label>Height (m) :</label>
+													<input type="number" name="Length" step="0.01" required="required">
+												</div>
+
+												<div class="c-filed circle_field">
+													<label>Radius (m) :</label>
+													<input type="number" name="radius" step="0.01" required="required">
+												</div>
+
+												<div class="c-filed trigona_field">
+													<label>Base (m) :</label>
+													<input type="number" name="Base" step="0.01" required="required">
+												</div>
+												
+												<div class="c-filed trigona_field">
+													<label>Height (m) :</label>
+													<input type="number" name="trigonaLength" step="0.01" required="required">
+												</div>
+
+												<div class="c-filed semicircle_field">
+													<label>Width (Diameter) (m) :</label>
+													<input type="number" name="semicirclewidth" step="0.01" required="required">
+												</div>
+
+
+
+												
+
+												<div class="c-total">
+													<label><input type="checkbox" name="turf_extra_area">
+															<span>Add approx. 5%</span></label>
+
+													<label>Total Area(s) : <span><span class="final_shap_area">0</span> m<sup>2</sup></span></label>
+													
+												</div>
+
+												
+												
+												
+
+											
+										</div>
+											<div class="c-form-btn">
+													<!-- <button class="calculate-btn btn_tuf_calculate" type="button">CALCULATE SHAPE</button> -->
+													<button class="calculate-btn btn_clear_turf" type="button">CLEAR SHAPE</button>
+													<button class="c-another-btn" type="button" >ADD ANOTHER SHAPE</button>
+												</div>
+									</div>
+									</div>	
+
+							</div>
+							<input type="hidden" name="turf_total_area" value="" id="turf_total_area">
+							<input type="hidden" name="turf_total_area_cost" value="" id="turf_total_area_cost">
+							<input type="hidden" name="turf_selected_product_price" value="12" id="turf_selected_product_price">
+							<input type="hidden" name="turf_selected_product_ID" value="277" id="turf_selected_product_ID">
+							<input type="hidden" name="action" value="calculate_tur_pro_cart" >
+							<input type="hidden" name="turf_calc_url" value="<?php echo get_the_permalink(); ?>" id="turf_calc_url">
+
+							<div class="c-total">
+													
+													<div class="final_amt">
+													<label>Final Total Area: <span><span class="final_shap_total">0</span>m<sup>2</sup></span></label>
+													<label>Final Total Cost : <span>$ <span class="final_total_cost">0</span></span></label>
+													</div>
+							</div>
+							<div class="c-total">
+													<button class="calculate-btn" type="button" id="btn_turf_addtocart">ADD TO CART</button>
+
+							</div>
+				</section>
+			</form>
+					<!-- end body calc -->
+
+				</div>
+			</div>
+		</div>
+		
+		
+
+	<?php
+}
+
+function turf_calc_addtocart() {
+			$turf_total_area = $_REQUEST['turf_total_area'];
+			$turf_total_area_cost = $_REQUEST['turf_total_area_cost'];
+			$turf_selected_product_ID = $_REQUEST['turf_selected_product_ID'];
+			$turf_calc_url = $_REQUEST['turf_calc_url'];
+			//echo 	$turf_selected_product_ID.$turf_total_area.'specscale';
+			if( ($turf_total_area != '') && ($turf_total_area_cost != '') && ($turf_selected_product_ID != '') && ($turf_calc_url != '')){
+
+				global $woocommerce;
+				$woocommerce->cart->add_to_cart($turf_selected_product_ID,$turf_total_area); 
+				return true;
+				//echo 'success_turf';
+				//exit;
+			}
+	
+				exit;
+}
+
+add_action( 'wp_ajax_nopriv_turf_calc_addtocart', 'turf_calc_addtocart' );
+add_action( 'wp_ajax_turf_calc_addtocart', 'turf_calc_addtocart' );
+
+ 
+add_action("init","call_custom_action");
+
+function call_custom_action(){
+
+		if((isset($_REQUEST['action'])) && ($_REQUEST['action'] != '')){
+
+		if($_REQUEST['action'] == 'calculate_tur_pro_cart'){
+
+			/*echo '<pre>';
+			print_r($_REQUEST);
+			echo '</pre>';*/
+
+			$turf_total_area = $_REQUEST['turf_total_area'];
+			$turf_total_area_cost = $_REQUEST['turf_total_area_cost'];
+			$turf_selected_product_ID = $_REQUEST['turf_selected_product_ID'];
+			$turf_calc_url = $_REQUEST['turf_calc_url'];
+
+			if( ($turf_total_area != '') && ($turf_total_area_cost != '') && ($turf_selected_product_ID != '') && ($turf_calc_url != '')){
+
+				//global $woocommerce;
+				
+			    
+				//$woocommerce->cart->add_to_cart(277); 
+				//exit;
+				wp_redirect($turf_calc_url.'?msg=true');
+				exit;
+			}else{
+				wp_redirect($turf_calc_url.'?msg=false');
+				exit;
+			}
+			
+			
+
+		}
+
+	}
+}
+
+function my_enqueue() {
+      wp_enqueue_script( 'ajax-script', get_template_directory_uri() . '/js/my-ajax-script.js', array('jquery') );
+      wp_localize_script( 'ajax-script', 'my_ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+ }
+ add_action( 'wp_enqueue_scripts', 'my_enqueue' );
+
+
+
+2.	⇒ Add below code into footer.php file after <?php wp_footer(); ?>
+
+<script type="text/javascript">
+		//	document.getElementById("myButton").addEventListener("click", function(event) { alert("Hi!");});
+			jQuery('body').on('click', '.c-another-btn', function(e) {
+				 e.preventDefault();
+			 // alert("test");
+			   var shaphtml = '<div class="shape-measure"><div class="atlasturf heading"><h3>Select your type of shape to measure</h3></div><div class="shape-list"><ul><li class="turfshap_selected" shapfield="default_field"><div class="shap-img-box"><img src="http://atlasturf.com.au/wp-content/uploads/2020/12/Square.png"></div><h3>Square</h3></li><li shapfield="defaultrect_field" class=""><div class="shap-img-box"><img src="http://atlasturf.com.au/wp-content/uploads/2020/12/Rectangle.png"></div><h3>Rectangle</h3></li><li shapfield="trigona_field" class=""><div class="shap-img-box"><img src="http://atlasturf.com.au/wp-content/uploads/2020/12/Triangle.png"></div><h3>Triangle</h3></li><li shapfield="circle_field" class="" style=" cursor: di; pointer-events: none;"><div class="shap-img-box"><img src="http://atlasturf.com.au/wp-content/uploads/2020/12/Circle.png"></div><h3>Circle</h3></li><li shapfield="semicircle_field"><div class="shap-img-box"><img src="http://atlasturf.com.au/wp-content/uploads/2020/12/Semi-Circle.png"></div><h3>Semi-Circle</h3></li></ul></div><div class="calculate-shape"><div class="c-filed default_field" style="display: block;"><label>Width (m) :</label><input type="number" name="Width" step="0.01" required="required"></div><div class="c-filed default_field" style="display: block;"><label>Height (m) :</label><input type="number" name="Height" step="0.01" required="required"></div><div class="c-filed defaultrect_field" style="display: none;"><label>Width (m) :</label><input type="number" name="rectangleWidth" step="0.01" required="required"></div><div class="c-filed defaultrect_field" style="display: none;"><label>Height (m) :</label><input type="number" name="Length" step="0.01" required="required"></div><div class="c-filed circle_field" style="display: none;"><label>Radius (m) :</label><input type="number" name="radius" step="0.01" required="required"></div><div class="c-filed trigona_field" style="display: none;"><label>Base (m) :</label><input type="number" name="Base" step="0.01" required="required"></div><div class="c-filed trigona_field" style="display: none;"><label>Height (m) :</label><input type="number" name="trigonaLength" step="0.01" required="required"></div><div class="c-filed semicircle_field" style="display: none;"><label>Width (Diameter) (m) :</label><input type="number" name="semicirclewidth" step="0.01" required="required"></div><div class="c-total"><label><input type="checkbox" name="turf_extra_area"><span>Add approx. 5%</span></label><label>Total Area(s) : <span><span class="final_shap_area">0</span> m<sup>2</sup></span></label></div></div><div class="c-form-btn"><button class="calculate-btn btn_clear_turf" type="button">CLEAR SHAPE</button><button class="c-another-btn" type="button">ADD ANOTHER SHAPE</button></div></div>';
+
+			   jQuery(".shape_data").append(shaphtml);
+
+			});
+
+			jQuery('body').on('click', 'button.calculate-btn.btn_clear_turf', function(e) {
+				 e.preventDefault();
+				jQuery(this).closest(".shape-measure").find("input[name='Width']").val("");
+				jQuery(this).closest(".shape-measure").find("input[name='Length']").val("");
+				jQuery(this).closest(".shape-measure").find("input[name='rectangleWidth']").val("");
+				jQuery(this).closest(".shape-measure").find("input[name='Height']").val("");
+				jQuery(this).closest(".shape-measure").find("input[name='radius']").val("");
+				jQuery(this).closest(".shape-measure").find("input[name='Base']").val("");
+				jQuery(this).closest(".shape-measure").find("input[name='trigonaLength']").val("");
+				jQuery(this).closest(".shape-measure").find("input[name='semicirclewidth']").val("");
+
+
+				jQuery(this).closest(".shape-measure").find("span.final_shap_area").text("0");
+				jQuery(this).closest(".shape-measure").find("span.final_shap_total").text("0");
+				jQuery(this).closest(".shape-measure").find("input[name='turf_extra_area']").prop("checked", false);
+
+
+				calculate_turf();
+
+			});
+
+			jQuery('body').on('click', '.turf_product', function() {
+
+				jQuery( ".turf_product" ).each(function() {
+				  jQuery( this ).removeClass( "turf_selected" );
+				});
+
+				jQuery(this).addClass("turf_selected");
+
+				var turf_pro_price = jQuery(this).attr("turf_pro_price");
+				var turf_pro_id = jQuery(this).attr("turf_pro_id");
+				
+				jQuery("#turf_selected_product_price").val(turf_pro_price);
+				jQuery("#turf_selected_product_ID").val(turf_pro_id);
+
+				calculate_turf();
+			});
+
+			jQuery('body').on('click', '.shape-list ul li', function() {
+
+				jQuery(this).closest(".shape-measure").find(".shape-list ul li").each(function() {
+
+					jQuery( this ).css("pointer-events","all");
+				  jQuery( this ).removeClass( "turfshap_selected" );
+
+					jQuery(this).closest(".shape-measure").find("input[name='Width']").val("");
+					jQuery(this).closest(".shape-measure").find("input[name='Length']").val("");
+					jQuery(this).closest(".shape-measure").find("input[name='rectangleWidth']").val("");
+					jQuery(this).closest(".shape-measure").find("input[name='Height']").val("");
+					jQuery(this).closest(".shape-measure").find("input[name='radius']").val("");
+					jQuery(this).closest(".shape-measure").find("input[name='Base']").val("");
+					jQuery(this).closest(".shape-measure").find("input[name='trigonaLength']").val("");
+					jQuery(this).closest(".shape-measure").find("input[name='semicirclewidth']").val("");
+					jQuery(this).closest(".shape-measure").find("input[name='turf_extra_area']").prop("checked", false);
+
+					jQuery(this).closest(".shape-measure").find(".c-filed.default_field").css("display","none");
+					jQuery(this).closest(".shape-measure").find(".c-filed.circle_field").css("display","none");
+					jQuery(this).closest(".shape-measure").find(".c-filed.trigona_field").css("display","none");
+					jQuery(this).closest(".shape-measure").find(".c-filed.semicircle_field").css("display","none");
+					jQuery(this).closest(".shape-measure").find(".c-filed.defaultrect_field").css("display","none");
+					
+
+				});
+
+				jQuery( this ).css("pointer-events","none");
+				var shapfield  =  jQuery(this).attr("shapfield");
+					
+				jQuery(this).closest(".shape-measure").find(".c-filed."+shapfield).css("display","block");
+
+				jQuery(this).addClass("turfshap_selected");
+
+				calculate_turf();
+			});
+
+			
+			jQuery('body').on('change', '.shape-measure input[type="number"]', function () {
+
+				calculate_turf();
+			});	
+			jQuery('body').on('change', '.shape-measure input[name="turf_extra_area"]', function () {
+
+				calculate_turf();
+			});	
+			
+			jQuery('body').on('keypress', '.shape-measure input[type="number"]', function () {
+			//jQuery(".shape-measure input[type='number']").keypress(function(){
+				setTimeout( function(){ 
+				  calculate_turf();
+				  }  , 200 );
+							  
+			});
+
+			
+			jQuery('body').on('click', '#btn_turf_addtocart', function () {
+
+				calculate_turf();
+		
+				
+				var turf_total_area = jQuery("#turf_total_area").val();
+				var turf_total_area_cost = jQuery("#turf_total_area_cost").val();
+				var turf_selected_product_ID = jQuery("#turf_selected_product_ID").val();
+				var turf_calc_url = jQuery("#turf_calc_url").val();
+
+				if( (turf_total_area != '') && (turf_total_area_cost != '') && (turf_selected_product_ID != '') && (turf_calc_url != '')){
+
+					jQuery.ajax({
+			             type : "GET",
+			             dataType : "json",
+			             url : my_ajax_object.ajax_url,
+			             data : {action: "turf_calc_addtocart",turf_total_area:turf_total_area,turf_total_area_cost:turf_total_area_cost,turf_selected_product_ID:turf_selected_product_ID,turf_calc_url:turf_calc_url},
+			             success: function(response) {
+			             	//alert("test");
+
+			             	 jQuery( "#frm_tuf_calc" ).submit();
+			             	// window.location.href = "https://atlasturf.com.au/lawn-care-tips/how-much-turf-do-i-need/?msg=true";
+			             		
+			             	
+			                   
+			              }
+			        }); 
+
+			       /*setTimeout( function(){ 
+				 jQuery( "#frm_tuf_calc" ).submit();
+				  }  , 1000 );
+*/
+				}
+				
+				/*setTimeout( function(){ 
+				 jQuery( "#frm_tuf_calc" ).submit();
+				  }  , 500 );*/
+
+				
+			});	
+			
+
+			function calculate_turf(){
+				
+				var totalarea = 0;
+				
+				var turf_selected_product_price = jQuery("#turf_selected_product_price").val();
+
+				jQuery( ".shape-measure" ).each(function() {
+				 
+					var selectedshap_field = jQuery(this).find(".turfshap_selected").attr("shapfield");
+
+					var totalshaparea = 0; 
+					if(selectedshap_field == 'default_field'){
+
+						var width = jQuery(this).find("input[name='Width']").val();
+						var Height = jQuery(this).find("input[name='Height']").val();
+
+						if( (width != '') && (width != "0") && (width != "0.0") && (Height != '') && (Height != "0") && (Height != "0.0")){
+							 totalshaparea = parseFloat(width) * parseFloat(Height);
+						}
+
+					}else if(selectedshap_field == 'defaultrect_field'){
+
+						var rectangleWidth = jQuery(this).find("input[name='rectangleWidth']").val();
+						var Length = jQuery(this).find("input[name='Length']").val();
+
+						if( (rectangleWidth != '') && (rectangleWidth != "0") && (rectangleWidth != "0.0") && (Length != '') && (Length != "0") && (Length != "0.0")){
+							 totalshaparea = parseFloat(rectangleWidth) * parseFloat(Length);
+						}
+
+					}else if(selectedshap_field == 'trigona_field'){
+
+						var Base = jQuery(this).find("input[name='Base']").val();
+						var trigonaLength = jQuery(this).find("input[name='trigonaLength']").val();
+
+						if( (Base != '') && (Base != "0") && (Base != "0.0") && (trigonaLength != '') && (trigonaLength != "0") && (trigonaLength != "0.0")){
+							 totalshaparea = 0.5 * parseFloat(Base) * parseFloat(trigonaLength);
+						}
+
+					}else if(selectedshap_field == 'circle_field'){
+
+						var radius = jQuery(this).find("input[name='radius']").val();
+						if( (radius != '') && (radius != "0") && (radius != "0.0")){
+							totalshaparea =  3.141592654 * parseFloat(radius) * parseFloat(radius);
+						}
+						
+
+					}else if(selectedshap_field == 'semicircle_field'){
+
+						var semicirclewidth = jQuery(this).find("input[name='semicirclewidth']").val();
+						if( (semicirclewidth != '') && (semicirclewidth != "0") && (semicirclewidth != "0.0")){
+							totalshaparea =  (3.141592654 * parseFloat(semicirclewidth) * parseFloat(semicirclewidth) ) * 0.5;
+						}
+					}
+
+					if(jQuery(this).find("input[name='turf_extra_area']").prop("checked") == true){
+
+					 	var extraarea = (parseFloat(totalshaparea) * 5) / 100 ;
+
+					 	totalshaparea = parseFloat(totalshaparea) + parseFloat(extraarea);
+					 }
+
+
+
+					if( (totalshaparea != '') && (totalshaparea != "0") && (totalshaparea != "0.0")){
+						jQuery(this).find("span.final_shap_area").text(totalshaparea);
+						totalshaparea = Math.ceil(totalshaparea.toFixed(2));
+						totalarea = parseFloat(totalarea) + parseFloat(totalshaparea);
+					}else{
+						jQuery(this).find("span.final_shap_area").text("0");
+					}
+
+
+
+				});
+				totalarea = Math.ceil(totalarea.toFixed(2));
+				jQuery("span.final_shap_total").text(totalarea);
+
+				var totalcost = ((parseFloat(turf_selected_product_price)) * (parseFloat(totalarea)));
+
+				totalcost = totalcost.toFixed(1);
+
+				jQuery("span.final_total_cost").text(totalcost);
+
+				jQuery("#turf_total_area").val(totalarea);
+				jQuery("#turf_total_area_cost").val(totalcost);
+
+			}
+
+		</script>
+
